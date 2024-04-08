@@ -6,6 +6,10 @@ class LoginController extends GetxController implements GetxService {
   late TextEditingController emailController;
   late TextEditingController passwordController;
 
+  final RxBool _obscureText = true.obs;
+  bool get obscureText => _obscureText.value;
+  set obscureText(bool value) => _obscureText.value = value;
+
   @override
   void onInit() {
     emailController = TextEditingController();
@@ -23,7 +27,10 @@ class LoginController extends GetxController implements GetxService {
   Future<void> signIn(BuildContext context) async {
     if (!formKey.currentState!.validate()) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('OK')),
+      const SnackBar(
+        content: Text('OK'),
+        backgroundColor: Colors.green,
+      ),
     );
   }
 }
